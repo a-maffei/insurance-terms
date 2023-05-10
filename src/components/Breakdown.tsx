@@ -1,7 +1,7 @@
-import { Terms } from "../data";
+import { TermsType } from "../data";
 
 type BreakdownProps = {
-  termsByLetter: Terms[];
+  termsByLetter: TermsType[];
 };
 
 export default function Breakdown(props: BreakdownProps) {

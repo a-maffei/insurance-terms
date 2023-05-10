@@ -1,10 +1,10 @@
-export type Terms = {
+export type TermsType = {
   id: number;
   name: string;
   description: string;
 };
 
-export const insuranceTerms: Terms[] = [
+export const insuranceTerms: TermsType[] = [
   {
     id: 1,
     name: "Actuary",
@@ -90,3 +90,11 @@ export const insuranceTerms: Terms[] = [
       "The principle of restoring an insured person to their financial position before a loss occurred, through payment or compensation from the insurance company.",
   },
 ];
+
+const asciiArray: number[] = Array(26)
+  .fill(0)
+  .map((el, i) => i + 65);
+
+export const alphabet: string[] = asciiArray.map((el) =>
+  String.fromCharCode(el)
+);
