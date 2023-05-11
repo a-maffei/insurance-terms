@@ -13,7 +13,7 @@ export default function Search({ terms, setTerms }: SearchProps) {
   const [query, setQuery] = useState<string>("");
   const [message, setMessage] = useState<string>("");
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
 
     const filtertedTerms: TermsType[] = terms.filter((term) =>
@@ -21,13 +21,13 @@ export default function Search({ terms, setTerms }: SearchProps) {
     );
 
     if (filtertedTerms.length === 0) {
-      setMessage("Sorry, we couldn't find an term matching your search");
+      return setMessage("Sorry, we couldn't find an term matching your search");
     }
 
     setTerms(filtertedTerms);
   };
 
-  const handleClearInput = () => {
+  const handleClearInput = (): void => {
     setTerms(insuranceTerms);
     setQuery("");
     setMessage("");

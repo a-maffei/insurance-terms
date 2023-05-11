@@ -4,10 +4,8 @@ type BreakdownProps = {
   termsByLetter: TermsType[];
 };
 
-export default function Breakdown(props: BreakdownProps) {
-  const { termsByLetter } = props;
-
-  const singleTerm: JSX.Element[] = termsByLetter.map((term) => {
+export default function Breakdown({ termsByLetter }: BreakdownProps) {
+  const singleTerm: JSX.Element[] = termsByLetter.map((term: TermsType) => {
     return (
       <article key={term.id}>
         <h3>{term.name}</h3>

@@ -1,4 +1,4 @@
-import { insuranceTerms } from "../data";
+import { insuranceTerms, TermsType } from "../data";
 
 type LetterProps = {
   letter: string;
@@ -7,7 +7,7 @@ type LetterProps = {
 
 export default function Letter({ letter, handleScrollToLetter }: LetterProps) {
   const hasTerms: boolean = insuranceTerms.some(
-    (term) => term.name.charAt(0) == letter
+    (term: TermsType) => term.name.charAt(0) === letter
   );
 
   return (

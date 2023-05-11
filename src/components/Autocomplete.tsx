@@ -1,6 +1,5 @@
-import { useState, useEffect, useRef, RefObject } from "react";
-import { TermsType } from "../data";
-import { insuranceTerms } from "../data";
+import { useState, useEffect } from "react";
+import { TermsType, insuranceTerms } from "../data";
 
 type AutoTerms = {
   query: string;
@@ -15,9 +14,11 @@ export default function Autocomplete({ query, setTerms }: AutoTerms) {
       return setAutocomplete([]);
     }
 
-    const matchingTerms = insuranceTerms.filter((term) => {
-      return term.name.toLowerCase().startsWith(query.toLowerCase());
-    });
+    const matchingTerms: TermsType[] = insuranceTerms.filter(
+      (term: TermsType) => {
+        return term.name.toLowerCase().startsWith(query.toLowerCase());
+      }
+    );
 
     if (matchingTerms.length > 0) {
       setAutocomplete(matchingTerms);
