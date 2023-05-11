@@ -1,4 +1,4 @@
-import { insuranceTerms, TermsType } from "../data";
+import { TermsType } from "../data";
 import Breakdown from "./Breakdown";
 
 type CollectionProps = {

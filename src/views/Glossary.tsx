@@ -1,15 +1,17 @@
+import { createRef, useEffect, useState } from "react";
 import HeaderGlossary from "../components/HeaderGlossary";
 import Search from "../components/Search";
 import Alphabet from "../components/Alphabet";
 import Overview from "../components/Overview";
-import { createRef } from "react";
 import { insuranceTerms, TermsType, alphabet } from "../data";
 
 export default function Glossary() {
+  const [terms, setTerms] = useState<TermsType[]>([...insuranceTerms]);
+
   const termsByLetter: TermsType[][] = [];
 
   alphabet.forEach((letter) => {
-    const letterArray: TermsType[] = insuranceTerms.filter(
+    const letterArray: TermsType[] = terms.filter(
       (term) => term.name.charAt(0).toLowerCase() === letter.toLowerCase()
     );
 
@@ -23,9 +25,9 @@ export default function Glossary() {
     alphabetRefs.push(createRef());
   });
 
-  const handleScrollToLetter = (letter: string) => {
-    const index = alphabet.findIndex((l) => l === letter);
-    if (index !== -1 && alphabetRefs[index].current) {
+  const handleScrollToLetter = (clickedLetter: string) => {
+    const index = alphabet.findIndex((letter) => clickedLetter === letter);
+    if (index !== -1) {
       alphabetRefs[index].current?.scrollIntoView({ behavior: "smooth" });
     }
   };
@@ -33,7 +35,7 @@ export default function Glossary() {
   return (
     <section>
       <HeaderGlossary />
-      <Search />
+      <Search terms={terms} setTerms={setTerms} />
       <Alphabet
         alphabet={alphabet}
         handleScrollToLetter={handleScrollToLetter}
