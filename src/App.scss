@@ -1,0 +1,126 @@
+@import "@popsure/dirty-swan/dist/font-weight";
+@import "@popsure/dirty-swan/dist/colors";
+
+/* Glossary */
+
+/* Header */
+
+.header-cont {
+  width: 50%;
+  margin: 3rem auto;
+}
+
+.header-content-cont {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Search */
+
+.search-macro-cont {
+  width: 100%;
+}
+
+.input-cont {
+  display: flex;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  position: relative;
+}
+
+.search-input {
+  padding-right: 0.5rem;
+}
+
+input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  height: 0.7em;
+  width: 0.7em;
+  background: url("./assets/delete.png") no-repeat 50% 50%;
+  background-size: contain;
+  opacity: 0;
+  pointer-events: none;
+}
+
+input[type="search"]:focus::-webkit-search-cancel-button {
+  opacity: 0.5;
+  pointer-events: all;
+}
+
+.suggestion-buttn {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  color: $ds-primary-500;
+}
+
+.suggestion-buttn:hover {
+  color: $ds-primary-700;
+}
+
+.suggestion-cont {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+form {
+  width: 70% !important;
+}
+
+.autocomplete-cont {
+  position: absolute;
+  top: 60px;
+  width: 70%;
+}
+
+.autocomplete-cont > li {
+  appearance: none;
+  display: block;
+  padding-left: 16px;
+  font-size: 16px;
+  line-height: 24px;
+  height: 48px;
+  width: 100%;
+  border-left: 1px solid $ds-primary-500;
+  border-right: 1px solid $ds-primary-500;
+  background-color: #fff;
+  color: #26262e;
+}
+
+.autocomplete-cont > li:first-child {
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+  border-top: 1px solid $ds-primary-500;
+  background-color: #fff;
+  color: #26262e;
+}
+
+.autocomplete-cont > li:last-child {
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+  border-bottom: 1px solid $ds-primary-500;
+  background-color: #fff;
+  color: #26262e;
+}
+
+.autocomplete-cont > li:hover {
+  background-color: $ds-primary-100;
+}
+
+.autocomplete-cont > li > button {
+  background: none;
+  border: none;
+  padding-left: 1rem;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  height: 100%;
+  width: 100%;
+  text-align: left;
+}

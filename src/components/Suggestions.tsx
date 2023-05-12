@@ -2,18 +2,29 @@ import { memo } from "react";
 import { insuranceTerms, TermsType } from "../data";
 
 type SuggestionProps = {
+  setAutocomplete: React.Dispatch<React.SetStateAction<TermsType[]>>;
   setTerms: React.Dispatch<React.SetStateAction<TermsType[]>>;
+  setQuery: React.Dispatch<React.SetStateAction<string>>;
 };
 
-function Suggestions({ setTerms }: SuggestionProps) {
+function Suggestions({ setAutocomplete, setTerms, setQuery }: SuggestionProps) {
   const randomizedTerms: TermsType[] = [...insuranceTerms]
     .sort(() => Math.random() - 0.5)
     .slice(0, 3);
 
   return (
-    <div>
+    <div className="suggestion-cont p-p--small">
+      How about:
       {randomizedTerms.map((term) => (
-        <button key={term.id} onClick={() => setTerms([term])}>
+        <button
+          className="suggestion-buttn"
+          key={term.id}
+          onClick={() => {
+            setQuery("");
+            setAutocomplete([]);
+            setTerms([term]);
+          }}
+        >
           {term.name}
         </button>
       ))}

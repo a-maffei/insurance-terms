@@ -24,9 +24,10 @@ export default function Glossary() {
   const refsByLetter = alphabet.map(() => createRef<HTMLDivElement>());
 
   return (
-    <section>
-      <HeaderGlossary />
-      <Search terms={terms} setTerms={setTerms} />
+    <section className="bg-primary-50">
+      <HeaderGlossary>
+        <Search terms={terms} setTerms={setTerms} />
+      </HeaderGlossary>
       <Alphabet refsByLetter={refsByLetter} />
       <Overview termsByLetter={termsByLetter} refsByLetter={refsByLetter} />
     </section>

@@ -12,9 +12,12 @@ type SearchProps = {
 export default function Search({ terms, setTerms }: SearchProps) {
   const [query, setQuery] = useState<string>("");
   const [message, setMessage] = useState<string>("");
+  const [autocomplete, setAutocomplete] = useState<TermsType[]>([]);
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
+
+    setAutocomplete([]);
 
     const filtertedTerms: TermsType[] = terms.filter((term) =>
       term.name.toLowerCase().includes(query.toLowerCase())
@@ -22,9 +25,9 @@ export default function Search({ terms, setTerms }: SearchProps) {
 
     if (filtertedTerms.length === 0) {
       return setMessage("Sorry, we couldn't find an term matching your search");
+    } else {
+      setTerms(filtertedTerms);
     }
-
-    setTerms(filtertedTerms);
   };
 
   const handleClearInput = (): void => {
@@ -33,23 +36,41 @@ export default function Search({ terms, setTerms }: SearchProps) {
     setMessage("");
   };
 
+  const areTermsFiltered: boolean = terms.length < insuranceTerms.length;
+
   return (
-    <div>
-      <Autocomplete query={query} setTerms={setTerms} />
-      <form onSubmit={handleSubmit}>
-        <input
-          className="p-input wmx5"
-          placeholder="Enter your input here"
-          type="search"
-          value={query}
-          onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            setQuery(e.target.value)
-          }
+    <div className="search-macro-cont">
+      <Suggestions
+        setQuery={setQuery}
+        setTerms={setTerms}
+        setAutocomplete={setAutocomplete}
+      />
+      <div className="input-cont">
+        <Autocomplete
+          query={query}
+          setQuery={setQuery}
+          setTerms={setTerms}
+          autocomplete={autocomplete}
+          setAutocomplete={setAutocomplete}
         />
-      </form>
-      <button onClick={handleClearInput}>Clear</button>
+        <form onSubmit={handleSubmit}>
+          <input
+            className="p-input search-input"
+            placeholder="Search term here..."
+            type="search"
+            value={query}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setQuery(e.target.value)
+            }
+          />
+        </form>
+        {areTermsFiltered && (
+          <button className="p-btn--primary" onClick={handleClearInput}>
+            Clear
+          </button>
+        )}
+      </div>
       {message && <p>{message}</p>}
-      <Suggestions setTerms={setTerms} />
     </div>
   );
 }
