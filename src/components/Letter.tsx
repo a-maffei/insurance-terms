@@ -11,8 +11,10 @@ export default function Letter({ letter, handleScrollToLetter }: LetterProps) {
   );
 
   return (
-    <button onClick={() => handleScrollToLetter(letter)} disabled={!hasTerms}>
-      {letter}
-    </button>
+    <div className={hasTerms ? "letter-bttn" : "letter-bttn disabled-bttn"}>
+      <button onClick={() => handleScrollToLetter(letter)} disabled={!hasTerms}>
+        {letter}
+      </button>
+    </div>
   );
 }

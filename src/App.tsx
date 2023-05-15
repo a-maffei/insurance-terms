@@ -1,5 +1,6 @@
 import "./App.scss";
 import Glossary from "./views/Glossary";
+import CTA from "./components/CTA";
 
 function App() {
   return (
@@ -7,6 +8,7 @@ function App() {
       <header></header>
       <main>
         <Glossary />
+        <CTA />
       </main>
     </div>
   );

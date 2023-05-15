@@ -7,9 +7,9 @@ type BreakdownProps = {
 export default function Breakdown({ termsByLetter }: BreakdownProps) {
   const singleTerm: JSX.Element[] = termsByLetter.map((term: TermsType) => {
     return (
-      <article key={term.id}>
-        <h3>{term.name}</h3>
-        <p>{term.description}</p>
+      <article className="breakdown-def" key={term.id}>
+        <h4 className="p-h4">{term.name}</h4>
+        <p className="p-p">{term.description}</p>
       </article>
     );
   });

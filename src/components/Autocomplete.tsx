@@ -16,21 +16,22 @@ export default function Autocomplete({
   setTerms,
   setQuery,
 }: AutoTypes) {
-  const autocompleteRef = useRef<HTMLUListElement>(null);
+  const autoCompleteRef = useRef<HTMLUListElement>(null);
+
   useEffect(() => {
-    const handleOutsideClick = (event: MouseEvent) => {
+    const handleClickOutside = (e: MouseEvent) => {
       if (
-        autocompleteRef.current &&
-        !autocompleteRef.current.contains(event.target as Node)
+        autoCompleteRef.current &&
+        !autoCompleteRef.current.contains(e.target as Node)
       ) {
         setAutocomplete([]);
       }
     };
 
-    document.addEventListener("click", handleOutsideClick);
+    document.addEventListener("click", handleClickOutside);
 
     return () => {
-      document.removeEventListener("click", handleOutsideClick);
+      document.removeEventListener("click", handleClickOutside);
     };
   }, [setAutocomplete]);
 
@@ -68,7 +69,7 @@ export default function Autocomplete({
 
   return (
     <>
-      <ul className="autocomplete-cont" ref={autocompleteRef}>
+      <ul className="autocomplete-cont" ref={autoCompleteRef}>
         {autocomplete.length > 0 && autoCompleteResults}
       </ul>
     </>

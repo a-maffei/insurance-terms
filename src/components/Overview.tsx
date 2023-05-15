@@ -1,9 +1,10 @@
-import { TermsType } from "../data";
+import { RefObject } from "react";
+import { alphabet, TermsType } from "../data";
 import Breakdown from "./Breakdown";
 
 type CollectionProps = {
   termsByLetter: TermsType[][];
-  refsByLetter: React.RefObject<HTMLDivElement>[];
+  refsByLetter: RefObject<HTMLDivElement>[];
 };
 
 export default function Overview({
@@ -11,17 +12,24 @@ export default function Overview({
   refsByLetter,
 }: CollectionProps) {
   const termsOverview: JSX.Element[] = termsByLetter.map(
-    (terms: TermsType[], index: number) => {
+    (terms: TermsType[]) => {
       const firstLetter: string = terms[0].name.charAt(0);
 
+      const index: number = alphabet.indexOf(firstLetter);
+
       return (
-        <div key={firstLetter} id={firstLetter} ref={refsByLetter[index]}>
-          <h1>{firstLetter}</h1>
+        <div
+          className="breakdown-cont"
+          key={firstLetter}
+          id={firstLetter}
+          ref={refsByLetter[index]}
+        >
+          <h2 className="p-h2">{firstLetter}</h2>
           <Breakdown termsByLetter={terms} />
         </div>
       );
     }
   );
 
-  return <div>{termsOverview}</div>;
+  return <div className="overview-cont">{termsOverview}</div>;
 }

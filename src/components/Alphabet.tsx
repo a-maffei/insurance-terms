@@ -11,6 +11,11 @@ export default function Collection({ refsByLetter }: CollectionProps) {
       (letter: string) => clickedLetter === letter
     );
 
+    console.log(clickedLetter, index);
+    console.log(refsByLetter[index]);
+
+    console.log(refsByLetter);
+
     if (index !== -1) {
       refsByLetter[index].current?.scrollIntoView({ behavior: "smooth" });
     }
@@ -26,5 +31,5 @@ export default function Collection({ refsByLetter }: CollectionProps) {
     )
   );
 
-  return <div>{alphabetButtons}</div>;
+  return <div className="bttn-cont">{alphabetButtons}</div>;
 }
