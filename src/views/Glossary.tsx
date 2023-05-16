@@ -43,10 +43,10 @@ export default function Glossary() {
           areTermsFiltered={areTermsFiltered}
         />
       </HeaderGlossary>
+      <Alphabet refsByLetter={refsByLetter} />
       <div className="error-cont">
         <p className="error">{message}</p>
       </div>
-      <Alphabet refsByLetter={refsByLetter} />
       <Overview termsByLetter={termsByLetter} refsByLetter={refsByLetter} />
       {!areTermsFiltered && (
         <button

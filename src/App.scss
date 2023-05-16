@@ -22,7 +22,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0 auto 3rem;
+  margin: 0 auto 1rem;
 }
 
 .header-content-cont {
@@ -59,6 +59,10 @@
   gap: 0.5rem;
   position: relative;
   width: 100%;
+}
+
+.input-cont > input {
+  width: 70%;
 }
 
 .search-input {
@@ -101,13 +105,13 @@ input[type="search"]:focus::-webkit-search-cancel-button {
 }
 
 form {
-  width: 100% !important;
+  width: 70% !important;
 }
 
 .autocomplete-cont {
   position: absolute;
   top: 55px;
-  width: 100%;
+  width: 70%;
 }
 
 .autocomplete-cont > li {
@@ -156,12 +160,12 @@ form {
 }
 
 .error {
-  margin-top: 1rem;
   font-style: italic;
 }
 
 .error-cont {
   height: 1.5rem;
+  margin: 2rem auto;
 }
 
 @media (max-width: 1400px) {
@@ -212,7 +216,7 @@ form {
 .bttn-cont {
   display: flex;
   width: 90%;
-  margin: 2rem auto 3rem;
+  margin: 2rem auto 0;
   justify-content: center;
   flex-wrap: wrap;
   gap: 0.8rem;
@@ -274,7 +278,11 @@ form {
 }
 
 .breakdown-def {
-  margin-bottom: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.breakdown-def:last-child {
+  margin-bottom: 0;
 }
 
 /* .breakdown-def > h4 {
@@ -312,6 +320,12 @@ form {
 
 .cta-img {
   width: 40%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.cta-img > img {
+  width: 90%;
   border-radius: 20px;
 }
 
@@ -330,4 +344,41 @@ form {
   height: 4px;
   background-color: $ds-primary-500;
   margin-top: 0.5rem;
+}
+
+@media (max-width: 1400px) {
+  .cta-inner-cont {
+    width: 80%;
+  }
+}
+
+@media (max-width: 1100px) {
+  .cta-inner-cont {
+    width: 90%;
+  }
+}
+
+@media (max-width: 550px) {
+  .cta-inner-cont {
+    flex-direction: column-reverse;
+    gap: 2.5rem;
+    align-items: center;
+  }
+
+  .cta-text {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .cta-img {
+    width: 90%;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .cta-img > img {
+    width: 80%;
+  }
 }

@@ -2,17 +2,17 @@ import insuranceExpert2 from "../assets/support2.jpeg";
 import React, { useState, useEffect } from "react";
 
 export default function CTA() {
-  const [width, setWidth] = useState(0);
+  const [width, setWidth] = useState<number>(0);
 
   useEffect(() => {
     let animationFrame: number;
-    let currentWidth = 0;
+    let currentWidth: number = 0;
 
-    function increaseLineWidth() {
-      currentWidth += 1;
+    function increaseLineWidth(): void {
+      currentWidth += 5;
       setWidth(currentWidth);
 
-      if (currentWidth < 20) {
+      if (currentWidth < 100) {
         animationFrame = requestAnimationFrame(increaseLineWidth);
       }
     }
@@ -28,7 +28,7 @@ export default function CTA() {
         <div className="cta-text">
           <div>
             <h3 className="p-h2 cta-title">Do you have questions left?</h3>
-            <div className="show-line" style={{ width: `${width}%` }}></div>
+            <div className="show-line" style={{ maxWidth: `${width}px` }}></div>
           </div>
           <p className="p-p">
             Whether you're new to Germany or still haven't wrapped your head
@@ -39,11 +39,9 @@ export default function CTA() {
             <button className="p-btn--primary">Get in touch</button>
           </a>
         </div>
-        <img
-          className="cta-img"
-          src={insuranceExpert2}
-          alt="Insurance expert at Feather"
-        />
+        <div className="cta-img">
+          <img src={insuranceExpert2} alt="Insurance expert at Feather" />
+        </div>
       </div>
     </section>
   );

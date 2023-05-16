@@ -33,6 +33,7 @@ export default function Search({
     if (filtertedTerms.length === 0) {
       return setMessage(`We could find any item for: "${query}"`);
     } else {
+      setMessage(`Results for: "${query}"`);
       setTerms(filtertedTerms);
     }
   };
