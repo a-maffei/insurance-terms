@@ -7,7 +7,6 @@ import { insuranceTerms, TermsType, alphabet } from "../data";
 
 export default function Glossary() {
   const [terms, setTerms] = useState<TermsType[]>([...insuranceTerms]);
-  const [message, setMessage] = useState<string>("");
 
   const termsByLetter: TermsType[][] = [];
 
@@ -37,16 +36,11 @@ export default function Glossary() {
       <HeaderGlossary headerRef={headerRef}>
         <Search
           terms={terms}
-          message={message}
-          setMessage={setMessage}
           setTerms={setTerms}
           areTermsFiltered={areTermsFiltered}
         />
       </HeaderGlossary>
       <Alphabet refsByLetter={refsByLetter} />
-      <div className="error-cont">
-        <p className="error">{message}</p>
-      </div>
       <Overview termsByLetter={termsByLetter} refsByLetter={refsByLetter} />
       {!areTermsFiltered && (
         <button

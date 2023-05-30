@@ -1,6 +1,76 @@
 @import "@popsure/dirty-swan/dist/font-weight";
 @import "@popsure/dirty-swan/dist/colors";
 
+/* Navbar */
+
+.navbar {
+  background-color: $ds-white;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 6%;
+
+  button {
+    background: none;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    font: inherit;
+    line-height: normal;
+    overflow: visible;
+    padding: 0;
+    text-align: inherit;
+    text-decoration: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    position: relative;
+  }
+
+  button::before {
+    content: "";
+    opacity: 0;
+    position: absolute;
+    left: 45%;
+    top: 1.5em;
+    width: 10%;
+    height: 0.3em;
+    border-radius: 20px;
+    background-color: $ds-primary-500;
+  }
+
+  button:hover {
+    color: $ds-primary-500;
+  }
+
+  button:hover::before {
+    opacity: 1;
+  }
+}
+
+.logo-cont {
+  width: 8rem;
+}
+
+.logo-mobile {
+  display: none;
+}
+
+@media (max-width: 1000px) {
+  .logo-desktop {
+    display: none;
+  }
+
+  .logo-cont {
+    width: 2rem;
+  }
+
+  .logo-mobile {
+    display: inline-block;
+  }
+}
+
 /* Glossary */
 
 .glossary-cont {
@@ -11,8 +81,10 @@
   padding: 2rem 0;
 }
 
-.back-button {
-  margin: 2rem auto;
+@media (max-width: 1000px) {
+  .header-content-cont {
+    gap: 1.5rem;
+  }
 }
 
 /* Header */
@@ -38,19 +110,19 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-}
 
-.header-img-cont > img {
-  width: 90%;
-  height: fit-content;
-  border-radius: 20px;
+  img {
+    width: 90%;
+    height: fit-content;
+    border-radius: 20px;
+  }
 }
 
 /* Search */
 
 .search-macro-cont {
   width: 100%;
-  margin: 2rem auto 0;
+  margin: 0 auto;
 }
 
 .input-cont {
@@ -59,10 +131,10 @@
   gap: 0.5rem;
   position: relative;
   width: 100%;
-}
 
-.input-cont > input {
-  width: 70%;
+  input {
+    width: 100%;
+  }
 }
 
 .search-input {
@@ -100,63 +172,64 @@ input[type="search"]:focus::-webkit-search-cancel-button {
 
 .suggestion-cont {
   display: flex;
+  flex-wrap: wrap;
   gap: 0.5rem;
   margin-bottom: 0.5rem;
 }
 
 form {
-  width: 70% !important;
+  width: 90% !important;
 }
 
 .autocomplete-cont {
   position: absolute;
   top: 55px;
-  width: 70%;
-}
+  width: 90%;
 
-.autocomplete-cont > li {
-  appearance: none;
-  display: block;
-  font-size: 16px;
-  line-height: 24px;
-  height: 48px;
-  width: 100%;
-  border-left: 1px solid $ds-primary-500;
-  border-right: 1px solid $ds-primary-500;
-  background-color: #fff;
-  color: #26262e;
-}
+  li {
+    appearance: none;
+    display: block;
+    font-size: 16px;
+    line-height: 24px;
+    height: 48px;
+    width: 100%;
+    border-left: 1px solid $ds-primary-500;
+    border-right: 1px solid $ds-primary-500;
+    background-color: #fff;
+    color: #26262e;
 
-.autocomplete-cont > li:first-child {
-  border-top-right-radius: 8px;
-  border-top-left-radius: 8px;
-  border-top: 1px solid $ds-primary-500;
-  background-color: #fff;
-  color: #26262e;
-}
+    button {
+      background: none;
+      border: none;
+      padding-left: 16px;
+      font: inherit;
+      cursor: pointer;
+      outline: inherit;
+      height: 100%;
+      width: 100%;
+      text-align: left;
+    }
+  }
 
-.autocomplete-cont > li:last-child {
-  border-bottom-right-radius: 8px;
-  border-bottom-left-radius: 8px;
-  border-bottom: 1px solid $ds-primary-500;
-  background-color: #fff;
-  color: #26262e;
-}
+  li:hover {
+    background-color: $ds-primary-100;
+  }
 
-.autocomplete-cont > li:hover {
-  background-color: $ds-primary-100;
-}
+  li:first-child {
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    border-top: 1px solid $ds-primary-500;
+    background-color: #fff;
+    color: #26262e;
+  }
 
-.autocomplete-cont > li > button {
-  background: none;
-  border: none;
-  padding-left: 16px;
-  font: inherit;
-  cursor: pointer;
-  outline: inherit;
-  height: 100%;
-  width: 100%;
-  text-align: left;
+  li:last-child {
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-bottom: 1px solid $ds-primary-500;
+    background-color: #fff;
+    color: #26262e;
+  }
 }
 
 .error {
@@ -165,7 +238,7 @@ form {
 
 .error-cont {
   height: 1.5rem;
-  margin: 2rem auto;
+  margin: 2rem auto 0;
 }
 
 @media (max-width: 1400px) {
@@ -175,10 +248,9 @@ form {
 
   .header-content-cont {
     width: 50%;
-  }
-
-  .header-content-cont > h1 {
-    font-size: 1.5em;
+    h1 {
+      font-size: 1.5em;
+    }
   }
 
   form {
@@ -193,6 +265,7 @@ form {
 
   .header-content-cont {
     width: 50%;
+    gap: 1.5rem;
   }
 }
 
@@ -209,6 +282,10 @@ form {
   .header-img-cont {
     display: none;
   }
+
+  .suggestion-cont {
+    gap: 0.3rem;
+  }
 }
 
 /* Buttons */
@@ -216,7 +293,7 @@ form {
 .bttn-cont {
   display: flex;
   width: 90%;
-  margin: 2rem auto 0;
+  margin: 1rem auto 2rem;
   justify-content: center;
   flex-wrap: wrap;
   gap: 0.8rem;
@@ -257,6 +334,16 @@ form {
   cursor: default;
 }
 
+@media (max-width: 1000px) {
+  .bttn-cont {
+    margin: 0rem auto 1rem;
+  }
+
+  .error-cont {
+    margin: 1rem auto 0;
+  }
+}
+
 /* Breakdown */
 
 .overview-cont {
@@ -270,24 +357,19 @@ form {
   background-color: $ds-white;
   padding: 1rem;
   margin-bottom: 1rem;
-  //border: 1px solid $ds-primary-500;
-}
 
-.breakdown-cont > h2 {
-  margin-bottom: 1rem;
-}
+  h2 {
+    margin-bottom: 1rem;
+  }
 
-.breakdown-def {
-  margin-bottom: 1rem;
-}
+  .breakdown-def {
+    margin-bottom: 1rem;
+  }
 
-.breakdown-def:last-child {
-  margin-bottom: 0;
+  .breakdown-def:last-child {
+    margin-bottom: 0;
+  }
 }
-
-/* .breakdown-def > h4 {
-  color: $ds-primary-700;
-} */
 
 @media (max-width: 1400px) {
   .breakdown-cont {
@@ -322,11 +404,11 @@ form {
   width: 40%;
   display: flex;
   justify-content: flex-end;
-}
 
-.cta-img > img {
-  width: 90%;
-  border-radius: 20px;
+  img {
+    width: 90%;
+    border-radius: 20px;
+  }
 }
 
 .cta-text {
@@ -334,10 +416,10 @@ form {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-}
 
-.cta-text > button {
-  width: 30%;
+  button {
+    min-width: 30%;
+  }
 }
 
 .show-line {
@@ -376,9 +458,26 @@ form {
     width: 90%;
     display: flex;
     justify-content: flex-end;
-  }
 
-  .cta-img > img {
-    width: 80%;
+    img {
+      width: 80%;
+    }
+  }
+}
+
+/* FOOTER */
+
+footer {
+  background-color: $ds-primary-50;
+  width: 100%;
+  p {
+    width: 70%;
+    margin: 2rem auto;
+    text-align: center;
+
+    a {
+      color: inherit;
+      cursor: pointer;
+    }
   }
 }

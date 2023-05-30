@@ -14,7 +14,7 @@ function Suggestions({ setAutocomplete, setTerms, setQuery }: SuggestionProps) {
 
   return (
     <div className="suggestion-cont p-p--small">
-      How about:
+      Tip:
       {randomizedTerms.map((term) => (
         <button
           className="suggestion-buttn"

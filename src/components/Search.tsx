@@ -7,20 +7,17 @@ import Suggestions from "./Suggestions";
 type SearchProps = {
   terms: TermsType[];
   areTermsFiltered: boolean;
-  message: string;
-  setMessage: React.Dispatch<React.SetStateAction<string>>;
   setTerms: React.Dispatch<React.SetStateAction<TermsType[]>>;
 };
 
 export default function Search({
   terms,
   setTerms,
-  message,
-  setMessage,
   areTermsFiltered,
 }: SearchProps) {
   const [query, setQuery] = useState<string>("");
   const [autocomplete, setAutocomplete] = useState<TermsType[]>([]);
+  const [message, setMessage] = useState<string>("");
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
@@ -81,6 +78,9 @@ export default function Search({
             Clear
           </button>
         )}
+      </div>
+      <div className="error-cont">
+        <p className="error">{message}</p>
       </div>
     </div>
   );
