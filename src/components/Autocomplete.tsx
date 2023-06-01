@@ -36,10 +36,6 @@ export default function Autocomplete({
   }, [setAutocomplete]);
 
   useEffect(() => {
-    if (query === "") {
-      return setAutocomplete([]);
-    }
-
     const matchingTerms: TermsType[] = insuranceTerms.filter(
       (term: TermsType) => {
         return term.name.toLowerCase().startsWith(query.toLowerCase());
@@ -48,6 +44,10 @@ export default function Autocomplete({
 
     if (matchingTerms.length > 0) {
       setAutocomplete(matchingTerms);
+    }
+
+    if (query === "" || matchingTerms.length === 0) {
+      return setAutocomplete([]);
     }
   }, [query, setAutocomplete]);
 
