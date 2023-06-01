@@ -11,9 +11,8 @@ export default function CTA() {
             <Line />
           </header>
           <p className="p-p">
-            Whether you're new to Germany or still haven't wrapped your head
-            around the system after years of living here (we get it!) this
-            glossary is for you.
+            Reach out to us. Our insurance experts will be happy to guide you
+            and provide recommendations based on your needs.
           </p>
           <a
             target="_blank"

@@ -73,7 +73,7 @@ export default function Search({ setTerms, areTermsFiltered }: SearchProps) {
           onClick={handleClearInput}
           disabled={!areTermsFiltered}
         >
-          Clear
+          All
         </button>
       </div>
       <div className="error-cont">

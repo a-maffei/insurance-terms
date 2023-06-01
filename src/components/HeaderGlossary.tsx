@@ -9,13 +9,11 @@ export default function HeaderGlossary({ children }: HeaderType) {
   return (
     <section className="header-cont">
       <header className="header-content-cont">
-        <h1 className="tc-grey-900 p-h1 header-title">
-          Jargon-free Insurance Glossary
-        </h1>
+        <h1 className="tc-grey-900 p-h1 header-title">Insurance Glossary</h1>
         <p className="tc-grey-900 p-p header-paragraph">
-          Whether you're new to Germany or still haven't wrapped your head
-          around the system after years of living here (we get it!) this
-          glossary is for you.
+          Fully jargon-free, made by our team of insurance experts. Whether
+          you're new to Germany or still haven't wrapped your head around the
+          system after years of living here (we get it!) this is for you.
         </p>
         {children}
       </header>
