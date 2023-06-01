@@ -14,6 +14,9 @@ export default function Search({ setTerms, areTermsFiltered }: SearchProps) {
   const [autocomplete, setAutocomplete] = useState<TermsType[]>([]);
   const [message, setMessage] = useState<string>("");
 
+  /* Below, we handle the logic for the search bar.
+  While here it's kept quite simple, in an ideal scenario we should have considered adding debouncing, so we don't "setQuery" every type the user presses a key. */
+
   const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
 
