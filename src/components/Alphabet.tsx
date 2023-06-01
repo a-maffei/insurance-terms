@@ -12,7 +12,7 @@ export default function Collection({ refsByLetter }: CollectionProps) {
     );
 
     if (index !== -1) {
-      refsByLetter[index].current?.scrollIntoView({ behavior: "smooth" });
+      refsByLetter[index].current?.scrollIntoView();
     }
   };
 
