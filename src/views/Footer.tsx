@@ -7,8 +7,8 @@ export default function Footer() {
           Alessandra Maffei
         </a>
         , inspired by (but without any affiliation to)
-        <a href="https://feather-insurance.com/">Feather Insurance</a>. The repo
-        for the project is{" "}
+        <a href="https://feather-insurance.com/"> Feather Insurance</a>. The
+        repo for the project is{" "}
         <a href="https://github.com/a-maffei/feather-application">on GitHub.</a>{" "}
       </p>
     </footer>
