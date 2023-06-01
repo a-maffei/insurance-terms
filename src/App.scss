@@ -5,11 +5,17 @@
 
 .navbar {
   background-color: $ds-white;
+  position: fixed;
+  top: 0;
   width: 100%;
+}
+
+.navbar-cont {
+  width: 70%;
+  margin: 1rem auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 6%;
 
   button {
     background: none;
@@ -50,7 +56,7 @@
 }
 
 .logo-cont {
-  width: 8rem;
+  width: 9rem;
 }
 
 .logo-mobile {
@@ -58,6 +64,10 @@
 }
 
 @media (max-width: 1000px) {
+  .navbar-cont {
+    width: 90%;
+  }
+
   .logo-desktop {
     display: none;
   }
@@ -78,7 +88,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 2rem 0;
+  padding: 7rem 0 0;
 }
 
 @media (max-width: 1000px) {
@@ -93,7 +103,7 @@
   width: 70%;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   margin: 0 auto 1rem;
 }
 
@@ -102,20 +112,13 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
-.header-img-cont {
+.header-img {
   width: 40%;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-
-  img {
-    width: 90%;
-    height: fit-content;
-    border-radius: 20px;
-  }
+  height: fit-content;
+  border-radius: 20px;
 }
 
 /* Search */
@@ -178,13 +181,13 @@ input[type="search"]:focus::-webkit-search-cancel-button {
 }
 
 form {
-  width: 90% !important;
+  width: 70% !important;
 }
 
 .autocomplete-cont {
   position: absolute;
   top: 55px;
-  width: 90%;
+  width: 70%;
 
   li {
     appearance: none;
@@ -195,7 +198,7 @@ form {
     width: 100%;
     border-left: 1px solid $ds-primary-500;
     border-right: 1px solid $ds-primary-500;
-    background-color: #fff;
+    background-color: $ds-white;
     color: #26262e;
 
     button {
@@ -219,16 +222,12 @@ form {
     border-top-right-radius: 8px;
     border-top-left-radius: 8px;
     border-top: 1px solid $ds-primary-500;
-    background-color: #fff;
-    color: #26262e;
   }
 
   li:last-child {
     border-bottom-right-radius: 8px;
     border-bottom-left-radius: 8px;
     border-bottom: 1px solid $ds-primary-500;
-    background-color: #fff;
-    color: #26262e;
   }
 }
 
@@ -251,10 +250,6 @@ form {
     h1 {
       font-size: 1.5em;
     }
-  }
-
-  form {
-    width: 100% !important;
   }
 }
 
@@ -279,7 +274,15 @@ form {
     text-align: center;
   }
 
-  .header-img-cont {
+  .input-cont {
+    width: 100%;
+  }
+
+  form {
+    max-width: 90% !important;
+  }
+
+  .header-img {
     display: none;
   }
 
@@ -293,7 +296,7 @@ form {
 .bttn-cont {
   display: flex;
   width: 90%;
-  margin: 1rem auto 2rem;
+  margin: 3rem auto 2rem;
   justify-content: center;
   flex-wrap: wrap;
   gap: 0.8rem;
@@ -336,7 +339,7 @@ form {
 
 @media (max-width: 1000px) {
   .bttn-cont {
-    margin: 0rem auto 1rem;
+    margin: 1.5rem auto;
   }
 
   .error-cont {
@@ -345,6 +348,12 @@ form {
 }
 
 /* Breakdown */
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
 .overview-cont {
   width: 100%;
@@ -361,14 +370,18 @@ form {
   h2 {
     margin-bottom: 1rem;
   }
+}
 
-  .breakdown-def {
-    margin-bottom: 1rem;
-  }
+.back-button {
+  margin: 1rem auto 0;
+}
 
-  .breakdown-def:last-child {
-    margin-bottom: 0;
-  }
+.breakdown-def {
+  margin-bottom: 1.3rem;
+}
+
+.breakdown-def:last-child {
+  margin-bottom: 0;
 }
 
 @media (max-width: 1400px) {
@@ -380,6 +393,7 @@ form {
 @media (max-width: 1100px) {
   .breakdown-cont {
     width: 90%;
+    padding: 1rem;
   }
 }
 
@@ -389,6 +403,7 @@ form {
   background-color: $ds-white;
   width: 100%;
   padding: 4rem 0;
+  margin-top: 3rem;
 }
 
 .cta-inner-cont {
@@ -417,7 +432,7 @@ form {
   flex-direction: column;
   gap: 1.5rem;
 
-  button {
+  a {
     min-width: 30%;
   }
 }

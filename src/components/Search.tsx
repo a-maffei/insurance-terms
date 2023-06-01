@@ -1,20 +1,15 @@
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
-import { TermsType } from "../data";
-import { insuranceTerms } from "../data";
 import Autocomplete from "./Autocomplete";
 import Suggestions from "./Suggestions";
+import { TermsType } from "../data";
+import { insuranceTerms } from "../data";
 
 type SearchProps = {
-  terms: TermsType[];
   areTermsFiltered: boolean;
   setTerms: React.Dispatch<React.SetStateAction<TermsType[]>>;
 };
 
-export default function Search({
-  terms,
-  setTerms,
-  areTermsFiltered,
-}: SearchProps) {
+export default function Search({ setTerms, areTermsFiltered }: SearchProps) {
   const [query, setQuery] = useState<string>("");
   const [autocomplete, setAutocomplete] = useState<TermsType[]>([]);
   const [message, setMessage] = useState<string>("");
@@ -24,7 +19,7 @@ export default function Search({
 
     setAutocomplete([]);
     const filtertedTerms: TermsType[] = insuranceTerms.filter((term) =>
-      term.name.toLowerCase().includes(query.toLowerCase())
+      term.name.toLowerCase().startsWith(query.toLowerCase())
     );
 
     if (filtertedTerms.length === 0) {
@@ -48,7 +43,7 @@ export default function Search({
   }, [query]);
 
   return (
-    <div className="search-macro-cont">
+    <section className="search-macro-cont">
       <Suggestions
         setQuery={setQuery}
         setTerms={setTerms}
@@ -73,15 +68,17 @@ export default function Search({
             }
           />
         </form>
-        {areTermsFiltered && (
-          <button className="p-btn--primary" onClick={handleClearInput}>
-            Clear
-          </button>
-        )}
+        <button
+          className="p-btn--primary"
+          onClick={handleClearInput}
+          disabled={!areTermsFiltered}
+        >
+          Clear
+        </button>
       </div>
       <div className="error-cont">
         <p className="error">{message}</p>
       </div>
-    </div>
+    </section>
   );
 }

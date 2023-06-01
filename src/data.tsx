@@ -212,10 +212,6 @@ export const insuranceTerms: TermsType[] = [
   },
 ];
 
-const asciiArray: number[] = Array(26)
+export const alphabet: string[] = Array(26)
   .fill(0)
-  .map((el, i) => i + 65);
-
-export const alphabet: string[] = asciiArray.map((el) =>
-  String.fromCharCode(el)
-);
+  .map((el, i) => String.fromCharCode(i + 65));

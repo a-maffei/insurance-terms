@@ -1,55 +1,63 @@
-import { createRef, useRef, useState } from "react";
+import { createRef, useState } from "react";
 import HeaderGlossary from "../components/HeaderGlossary";
 import Search from "../components/Search";
 import Alphabet from "../components/Alphabet";
 import Overview from "../components/Overview";
+import CTA from "../components/CTA";
 import { insuranceTerms, TermsType, alphabet } from "../data";
+import BackButton from "../components/BackButton";
 
 export default function Glossary() {
   const [terms, setTerms] = useState<TermsType[]>([...insuranceTerms]);
 
-  const termsByLetter: TermsType[][] = [];
+  /* We create an array of arrays (terms by letter) in order to display the glossary in the children components.
+  To avoid looping through the entire glossary for each letter, we temporarily create a dictionary data structure so we can use a more time-efficient bracket notation */
 
-  alphabet.forEach((letter: string) => {
-    const sigleLetterArray: TermsType[] = terms.filter(
-      (term: TermsType) =>
-        term.name.charAt(0).toLowerCase() === letter.toLowerCase()
-    );
+  const termsMap: { [key: string]: TermsType[] } = {};
 
-    if (sigleLetterArray.length > 0) {
-      termsByLetter.push(sigleLetterArray);
+  terms.forEach((term: TermsType) => {
+    const termInitial: string = term.name.charAt(0).toLowerCase();
+    if (termsMap[termInitial]) {
+      termsMap[termInitial].push(term);
+    } else {
+      termsMap[termInitial] = [term];
     }
   });
 
-  const refsByLetter = alphabet.map(() => createRef<HTMLDivElement>());
-  const headerRef = useRef<HTMLHeadingElement>(null);
+  /* The above data structure would be perfectly fine, but since the rest of the app features are built using an "array approach" we'll have to reconvert our dictionary back into an array. */
 
-  const handleBackToTop = () => {
-    if (headerRef.current)
-      headerRef.current.scrollIntoView({ behavior: "smooth" });
-  };
+  const termsByLetter: TermsType[][] = alphabet.reduce(
+    (acc: TermsType[][], letter: string) => {
+      if (termsMap[letter.toLowerCase()]) {
+        acc.push(termsMap[letter.toLowerCase()]);
+      }
+      return acc;
+    },
+    []
+  );
+
+  /* We create an array of refs, which we'll use to allow scrolling down to a certain letter when clicking on the respective button */
+
+  const refsByLetter = alphabet.map(() => createRef<HTMLDivElement>());
 
   const areTermsFiltered: boolean = terms.length < insuranceTerms.length;
 
   return (
-    <section className="glossary-cont bg-primary-50">
-      <HeaderGlossary headerRef={headerRef}>
-        <Search
-          terms={terms}
-          setTerms={setTerms}
-          areTermsFiltered={areTermsFiltered}
-        />
-      </HeaderGlossary>
-      <Alphabet refsByLetter={refsByLetter} />
-      <Overview termsByLetter={termsByLetter} refsByLetter={refsByLetter} />
-      {!areTermsFiltered && (
-        <button
-          className="p-btn--primary back-button"
-          onClick={handleBackToTop}
-        >
-          Back to top
-        </button>
-      )}
-    </section>
+    <div className="glossary-cont bg-primary-50">
+      <header>
+        <HeaderGlossary>
+          <Search setTerms={setTerms} areTermsFiltered={areTermsFiltered} />
+        </HeaderGlossary>
+      </header>
+      <main>
+        <Alphabet refsByLetter={refsByLetter} />
+        <Overview
+          termsByLetter={termsByLetter}
+          refsByLetter={refsByLetter}
+        />{" "}
+        <BackButton areTermsFiltered={areTermsFiltered} />
+        <CTA />
+      </main>
+    </div>
   );
 }

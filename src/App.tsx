@@ -1,19 +1,13 @@
-import "./App.scss";
 import Glossary from "./views/Glossary";
-import CTA from "./components/CTA";
 import Navbar from "./views/Navbar";
 import Footer from "./views/Footer";
+import "./App.scss";
 
 function App() {
   return (
     <div className="App">
-      <header>
-        <Navbar />
-      </header>
-      <main>
-        <Glossary />
-        <CTA />
-      </main>
+      <Navbar />
+      <Glossary />
       <Footer />
     </div>
   );

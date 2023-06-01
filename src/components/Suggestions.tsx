@@ -8,9 +8,16 @@ type SuggestionProps = {
 };
 
 function Suggestions({ setAutocomplete, setTerms, setQuery }: SuggestionProps) {
-  const randomizedTerms: TermsType[] = [...insuranceTerms]
-    .sort(() => Math.random() - 0.5)
-    .slice(0, 3);
+  /* We create a random selection of 3 items.
+  I'd consider this function "good enough" for the limited purpose of this project.
+  In an optimal scenario a more refined algorithm would be need to make sure every term has equal chance of being displayed. */
+
+  const randomizedTerms: TermsType[] = Array.from({ length: 3 }, () => {
+    const randomIndex: number = Math.floor(
+      Math.random() * insuranceTerms.length
+    );
+    return insuranceTerms[randomIndex];
+  });
 
   return (
     <div className="suggestion-cont p-p--small">

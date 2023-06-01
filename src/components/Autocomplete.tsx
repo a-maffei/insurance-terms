@@ -52,7 +52,7 @@ export default function Autocomplete({
   }, [query, setAutocomplete]);
 
   const autoCompleteResults: JSX.Element[] = autocomplete
-    .slice(0, 4)
+    .slice(0, 2)
     .map((term) => (
       <li key={term.id}>
         <button
