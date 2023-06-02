@@ -15,7 +15,6 @@ export default function CTA() {
             and provide recommendations based on your needs.
           </p>
           <a
-            target="_blank"
             href="https://feather-insurance.com/support"
             rel="noopener noreferrer"
           >
