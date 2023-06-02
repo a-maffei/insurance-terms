@@ -57,7 +57,7 @@ I built this project on and off, for what amounts to 3/4 days of work. It was a 
 
 ## Wishes for V2
 
-- Refactoring: review the main data structure to see if I can make the app more efficient (for example, consider switching from array to Map for the glossary)
+- Refactoring: review the data structure used to store glossary terms (for example, consider switching from array to Map)
 - Feature: build specific pages for each glossary term, to interlink with other resources on the Feather website (all good for SEO)
 
 ## Acknowledgements
