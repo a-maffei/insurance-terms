@@ -90,6 +90,12 @@
   }
 }
 
+@media (min-width: 1800px) {
+  .navbar-cont {
+    width: 50%;
+  }
+}
+
 /* Glossary */
 
 .glossary-cont {
@@ -250,6 +256,14 @@ form {
   margin: 2rem auto 0;
 }
 
+@media (min-width: 2300px) {
+  .header-cont {
+    img {
+      width: 35%;
+    }
+  }
+}
+
 @media (min-width: 1400px) {
   .header-cont {
     width: 60%;
@@ -257,6 +271,12 @@ form {
 
   .header-content-cont {
     gap: 2rem;
+  }
+}
+
+@media (min-width: 1800px) {
+  .header-cont {
+    width: 50%;
   }
 }
 
@@ -427,6 +447,12 @@ main {
   }
 }
 
+@media (min-width: 1800px) {
+  .breakdown-cont {
+    width: 50%;
+  }
+}
+
 /* CTA */
 
 .cta-cont {
@@ -473,15 +499,27 @@ main {
   margin-top: 0.5rem;
 }
 
-@media (max-width: 1400px) {
-  .cta-inner-cont {
-    width: 80%;
-  }
-}
-
 @media (min-width: 1400px) {
   .cta-inner-cont {
     width: 60%;
+  }
+}
+
+@media (min-width: 1800px) {
+  .cta-inner-cont {
+    width: 50%;
+  }
+}
+
+@media (min-width: 2300px) {
+  .cta-img {
+    width: 35%;
+  }
+}
+
+@media (max-width: 1400px) {
+  .cta-inner-cont {
+    width: 80%;
   }
 }
 
