@@ -1,6 +1,8 @@
 @import "@popsure/dirty-swan/dist/font-weight";
 @import "@popsure/dirty-swan/dist/colors";
 
+/* In V2 of this project, it would make sense to split the styling into different component-making it more organized, readable, and manageable */
+
 /* Navbar */
 
 .navbar {
@@ -79,6 +81,12 @@
 
   .logo-mobile {
     display: inline-block;
+  }
+}
+
+@media (min-width: 1400px) {
+  .navbar-cont {
+    width: 60%;
   }
 }
 
@@ -242,6 +250,16 @@ form {
   margin: 2rem auto 0;
 }
 
+@media (min-width: 1400px) {
+  .header-cont {
+    width: 60%;
+  }
+
+  .header-content-cont {
+    gap: 2rem;
+  }
+}
+
 @media (max-width: 1400px) {
   .header-cont {
     width: 80%;
@@ -349,6 +367,10 @@ form {
   }
 }
 
+.bttn-cont {
+  margin: 4rem auto 3rem;
+}
+
 /* Breakdown */
 
 main {
@@ -396,6 +418,12 @@ main {
   .breakdown-cont {
     width: 90%;
     padding: 1rem;
+  }
+}
+
+@media (min-width: 1400px) {
+  .breakdown-cont {
+    width: 60%;
   }
 }
 
@@ -448,6 +476,12 @@ main {
 @media (max-width: 1400px) {
   .cta-inner-cont {
     width: 80%;
+  }
+}
+
+@media (min-width: 1400px) {
+  .cta-inner-cont {
+    width: 60%;
   }
 }
 
