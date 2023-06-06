@@ -36,10 +36,10 @@ A brief note on styling: I applied in a bit of a “scrappy” way given self-im
 ## Screenshot
 
 Desktop:<br>
-<img width="90%" alt="feather-desktop" src="https://github.com/a-maffei/feather-application/assets/113006001/d5315765-df41-4e93-a993-324495dc544c"><br>
+<img alt="feather-desktop" width="90%" src="https://github.com/a-maffei/insurance-terms/assets/113006001/ee3193e6-379e-4a26-887b-d4e507a5944a">
 
 Mobile:<br>
-<img width="30%" alt="feather-mobile" src="https://github.com/a-maffei/feather-application/assets/113006001/23dc3cfa-40d9-44e8-8bc1-ec0cad2dfae4">
+<img alt="feather-desktop" width="30%" src="https://github.com/a-maffei/insurance-terms/assets/113006001/e3d7394f-e9aa-4757-9e05-16166c13e0fc">
 
 ## Reflection
 
@@ -47,7 +47,7 @@ I built this project on and off, for what amounts to 3/4 days of work. It was a 
 
 **What I enjoyed while building this app:**
 
-- Finding my way around a “foreign” design system and striving to have my design match the original product
+- Finding my way around a “foreign” design system and striving to have my design resemble as much as possible the original product
 - I always enjoy thinking about State management and see my understanding of it evolve (lifting state up, using `children` props, etc.)
 - The search bar was particularly fun, especially building and styling the “autocomplete” part
 
@@ -61,7 +61,7 @@ I built this project on and off, for what amounts to 3/4 days of work. It was a 
 
 - Refactoring: review the main data structure to see if I can make the app more efficient (for example, consider switching from array to Map for the glossary)
 - Refactoring: split the styling into different components instead of one single file-making it more organized, readable, and manageable
-- Feature: build specific pages for each glossary term, to interlink with other resources on the Feather website (all good for SEO)
+- Feature: build specific pages for each glossary term, to interlink with other resources on the Feather website (good for SEO)
 
 ## Acknowledgements
 
