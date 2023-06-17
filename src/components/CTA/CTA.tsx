@@ -1,5 +1,5 @@
-import insuranceExpert2 from "../assets/support2.jpeg";
-import Line from "./Line";
+import insuranceExpert2 from "../../assets/support2.jpeg";
+import Line from "../Line/Line";
 
 export default function CTA() {
   return (

@@ -1,8 +1,8 @@
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import Autocomplete from "./Autocomplete";
 import Suggestions from "./Suggestions";
-import { TermsType } from "../data";
-import { insuranceTerms } from "../data";
+import { TermsType } from "../../data";
+import { insuranceTerms } from "../../data";
 
 type SearchProps = {
   areTermsFiltered: boolean;

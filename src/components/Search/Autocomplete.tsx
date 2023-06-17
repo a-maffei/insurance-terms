@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { TermsType, insuranceTerms } from "../data";
+import { TermsType, insuranceTerms } from "../../data";
 
 type AutoTypes = {
   query: string;

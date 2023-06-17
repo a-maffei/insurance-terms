@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import insuranceExpert1 from "../assets/support1.jpeg";
+import insuranceExpert1 from "../../assets/support1.jpeg";
 
 type HeaderType = {
   children: ReactNode;

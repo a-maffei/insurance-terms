@@ -1,5 +1,5 @@
 import { memo } from "react";
-import { insuranceTerms, TermsType } from "../data";
+import { insuranceTerms, TermsType } from "../../data";
 
 type SuggestionProps = {
   setAutocomplete: React.Dispatch<React.SetStateAction<TermsType[]>>;

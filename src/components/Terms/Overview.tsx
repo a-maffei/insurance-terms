@@ -1,5 +1,6 @@
 import { RefObject } from "react";
-import { alphabet, TermsType } from "../data";
+import { TermsType } from "../../data";
+import { alphabet } from "../../utils/helper";
 import Breakdown from "./Breakdown";
 
 type CollectionProps = {

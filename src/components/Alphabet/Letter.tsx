@@ -1,4 +1,4 @@
-import { insuranceTerms, TermsType } from "../data";
+import { insuranceTerms, TermsType } from "../../data";
 
 type LetterProps = {
   letter: string;

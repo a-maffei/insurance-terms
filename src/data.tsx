@@ -211,7 +211,3 @@ export const insuranceTerms: TermsType[] = [
       "A type of insurance that provides extra liability coverage beyond the limits of an insured's home, auto, or watercraft insurance. It covers additional risks and higher amounts not covered by other policies.",
   },
 ];
-
-export const alphabet: string[] = Array(26)
-  .fill(0)
-  .map((el, i) => String.fromCharCode(i + 65));

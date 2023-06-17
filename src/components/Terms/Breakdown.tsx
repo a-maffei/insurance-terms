@@ -1,4 +1,4 @@
-import { TermsType } from "../data";
+import { TermsType } from "../../data";
 
 type BreakdownProps = {
   termsByLetter: TermsType[];

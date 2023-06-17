@@ -1,5 +1,5 @@
 import Letter from "./Letter";
-import { alphabet } from "../data";
+import { alphabet } from "../../utils/helper";
 
 type CollectionProps = {
   refsByLetter: React.RefObject<HTMLDivElement>[];

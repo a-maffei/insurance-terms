@@ -1,6 +1,6 @@
-import logo from "../assets/logo.png";
-import logoMobile from "../assets/logo-mobile.png";
-import cv from "../assets/AlessandraMaffei_CV_Feather.pdf";
+import logo from "../../assets/logo.png";
+import logoMobile from "../../assets/logo-mobile.png";
+import cv from "../../assets/AlessandraMaffei_CV_Feather.pdf";
 
 export default function Navbar() {
   const handleCVButtonClick = () => {

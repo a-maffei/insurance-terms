@@ -1,11 +1,12 @@
 import { createRef, useState } from "react";
-import HeaderGlossary from "../components/HeaderGlossary";
-import Search from "../components/Search";
-import Alphabet from "../components/Alphabet";
-import Overview from "../components/Overview";
-import CTA from "../components/CTA";
-import { insuranceTerms, TermsType, alphabet } from "../data";
-import BackButton from "../components/BackButton";
+import HeaderGlossary from "../Header/HeaderGlossary";
+import Search from "../Search/Search";
+import Alphabet from "../Alphabet/Alphabet";
+import Overview from "../Terms/Overview";
+import CTA from "../CTA/CTA";
+import { insuranceTerms, TermsType } from "../../data";
+import { alphabet } from "../../utils/helper";
+import BackButton from "../Terms/BackButton";
 
 export default function Glossary() {
   const [terms, setTerms] = useState<TermsType[]>([...insuranceTerms]);
