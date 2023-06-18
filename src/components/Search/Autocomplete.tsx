@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
-import { TermsType, insuranceTerms } from "../../data";
+import { TermsType } from "../../data";
+import { useAutocomplete } from "../../utils/hooks/useAutocomplete";
 
 type AutoTypes = {
   query: string;
@@ -16,6 +17,8 @@ export default function Autocomplete({
   setTerms,
   setQuery,
 }: AutoTypes) {
+  useAutocomplete(query, setAutocomplete);
+
   const autoCompleteRef = useRef<HTMLUListElement>(null);
 
   useEffect(() => {
@@ -35,42 +38,23 @@ export default function Autocomplete({
     };
   }, [setAutocomplete]);
 
-  useEffect(() => {
-    const matchingTerms: TermsType[] = insuranceTerms.filter(
-      (term: TermsType) => {
-        return term.name.toLowerCase().startsWith(query.toLowerCase());
-      }
-    );
-
-    if (matchingTerms.length > 0) {
-      setAutocomplete(matchingTerms);
-    }
-
-    if (query === "" || matchingTerms.length === 0) {
-      return setAutocomplete([]);
-    }
-  }, [query, setAutocomplete]);
-
-  const autoCompleteResults: JSX.Element[] = autocomplete
-    .slice(0, 2)
-    .map((term) => (
-      <li key={term.id}>
-        <button
-          onClick={() => {
-            setQuery("");
-            setAutocomplete([]);
-            setTerms([term]);
-          }}
-        >
-          {term.name}
-        </button>
-      </li>
-    ));
-
   return (
     <>
       <ul className="autocomplete-cont" ref={autoCompleteRef}>
-        {autocomplete.length > 0 && autoCompleteResults}
+        {autocomplete.length > 0 &&
+          autocomplete.slice(0, 2).map((term) => (
+            <li key={term.id}>
+              <button
+                onClick={() => {
+                  setQuery("");
+                  setAutocomplete([]);
+                  setTerms([term]);
+                }}
+              >
+                {term.name}
+              </button>
+            </li>
+          ))}
       </ul>
     </>
   );

@@ -1,49 +1,18 @@
-import { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import { useState } from "react";
 import Autocomplete from "./Autocomplete";
 import Suggestions from "./Suggestions";
+import Searchbar from "./Searchbar";
 import { TermsType } from "../../data";
-import { insuranceTerms } from "../../data";
 
 type SearchProps = {
   areTermsFiltered: boolean;
   setTerms: React.Dispatch<React.SetStateAction<TermsType[]>>;
 };
 
-export default function Search({ setTerms, areTermsFiltered }: SearchProps) {
+export default function Search({ areTermsFiltered, setTerms }: SearchProps) {
   const [query, setQuery] = useState<string>("");
   const [autocomplete, setAutocomplete] = useState<TermsType[]>([]);
   const [message, setMessage] = useState<string>("");
-
-  /* Below, we handle the logic for the search bar.
-  While here it's kept quite simple, in an ideal scenario we should have considered adding debouncing, so we don't "setQuery" every type the user presses a key. */
-
-  const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
-    e.preventDefault();
-
-    setAutocomplete([]);
-    const filtertedTerms: TermsType[] = insuranceTerms.filter((term) =>
-      term.name.toLowerCase().startsWith(query.toLowerCase())
-    );
-
-    if (filtertedTerms.length === 0) {
-      return setMessage(`We could find any item for: "${query}"`);
-    } else {
-      setMessage(`Results for: "${query}"`);
-      setTerms(filtertedTerms);
-    }
-  };
-
-  const handleClearInput = (): void => {
-    setTerms(insuranceTerms);
-    setQuery("");
-    setMessage("");
-  };
-
-  useEffect(() => {
-    if (query.length === 0) {
-      setMessage("");
-    }
-  }, [query]);
 
   return (
     <section className="search-macro-cont">
@@ -60,24 +29,14 @@ export default function Search({ setTerms, areTermsFiltered }: SearchProps) {
           autocomplete={autocomplete}
           setAutocomplete={setAutocomplete}
         />
-        <form onSubmit={handleSubmit}>
-          <input
-            className="p-input search-input"
-            placeholder="Search term here..."
-            type="search"
-            value={query}
-            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              setQuery(e.target.value)
-            }
-          />
-        </form>
-        <button
-          className="p-btn--primary"
-          onClick={handleClearInput}
-          disabled={!areTermsFiltered}
-        >
-          All
-        </button>
+        <Searchbar
+          query={query}
+          areTermsFiltered={areTermsFiltered}
+          setQuery={setQuery}
+          setTerms={setTerms}
+          setAutocomplete={setAutocomplete}
+          setMessage={setMessage}
+        />
       </div>
       <div className="error-cont">
         <p className="error">{message}</p>
