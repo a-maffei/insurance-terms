@@ -1,4 +1,5 @@
 import { insuranceTerms, TermsType } from "../../data";
+import { hasTerms } from "../../utils/helper";
 
 type LetterProps = {
   letter: string;
@@ -6,13 +7,14 @@ type LetterProps = {
 };
 
 export default function Letter({ letter, handleScrollToLetter }: LetterProps) {
-  const hasTerms: boolean = insuranceTerms.some(
-    (term: TermsType) => term.name.charAt(0) === letter
-  );
+  const isEnabled: boolean = hasTerms(letter);
 
   return (
-    <div className={hasTerms ? "letter-bttn" : "letter-bttn disabled-bttn"}>
-      <button onClick={() => handleScrollToLetter(letter)} disabled={!hasTerms}>
+    <div className={isEnabled ? "letter-bttn" : "letter-bttn disabled-bttn"}>
+      <button
+        onClick={() => handleScrollToLetter(letter)}
+        disabled={!isEnabled}
+      >
         {letter}
       </button>
     </div>

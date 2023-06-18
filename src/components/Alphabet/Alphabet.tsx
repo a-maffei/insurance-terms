@@ -1,5 +1,5 @@
 import Letter from "./Letter";
-import { alphabet } from "../../utils/helper";
+import { alphabet, findLetterIndex } from "../../utils/helper";
 
 type CollectionProps = {
   refsByLetter: React.RefObject<HTMLDivElement>[];
@@ -7,22 +7,22 @@ type CollectionProps = {
 
 export default function Collection({ refsByLetter }: CollectionProps) {
   const handleScrollToLetter = (clickedLetter: string): void => {
-    const index: number = alphabet.findIndex(
-      (letter: string) => clickedLetter === letter
-    );
+    const index: number = findLetterIndex(clickedLetter);
 
     if (index !== -1) {
       refsByLetter[index].current?.scrollIntoView();
     }
   };
 
-  const alphabetButtons: JSX.Element[] = alphabet.map((letter: string) => (
-    <Letter
-      key={letter}
-      letter={letter}
-      handleScrollToLetter={handleScrollToLetter}
-    />
-  ));
-
-  return <div className="bttn-cont">{alphabetButtons}</div>;
+  return (
+    <div className="bttn-cont">
+      {alphabet.map((letter: string) => (
+        <Letter
+          key={letter}
+          letter={letter}
+          handleScrollToLetter={handleScrollToLetter}
+        />
+      ))}
+    </div>
+  );
 }
