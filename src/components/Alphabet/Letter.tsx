@@ -1,4 +1,3 @@
-import { insuranceTerms, TermsType } from "../../data";
 import { hasTerms } from "../../utils/helper";
 
 type LetterProps = {

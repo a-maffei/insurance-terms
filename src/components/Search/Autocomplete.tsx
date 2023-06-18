@@ -19,6 +19,8 @@ export default function Autocomplete({
 }: AutoTypes) {
   useAutocomplete(query, setAutocomplete);
 
+  /* After defining the logic for the autocomplete, imported from the custom hook, we take care of the UI logic to hide the autocomplete container if the user clicks outside of it */
+
   const autoCompleteRef = useRef<HTMLUListElement>(null);
 
   useEffect(() => {
