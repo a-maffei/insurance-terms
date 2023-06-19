@@ -22,7 +22,7 @@ export function useSearchbar(
     );
 
     if (filteredTerms.length === 0) {
-      return setMessage(`We could find any item for: "${query}"`);
+      return setMessage(`We couldn't find any item for: "${query}"`);
     } else {
       setMessage(`Results for: "${query}"`);
       setTerms(filteredTerms);

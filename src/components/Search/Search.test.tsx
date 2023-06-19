@@ -1,0 +1,48 @@
+import { render, screen, fireEvent, act } from "@testing-library/react";
+import "@testing-library/jest-dom/extend-expect";
+import userEvent from "@testing-library/user-event";
+import Search from "./Search";
+
+afterEach(() => {
+  jest.clearAllMocks();
+});
+
+test("form submission displays filtered terms and message when there are matching results", async () => {
+  const mockSetTerms = jest.fn();
+
+  render(<Search setTerms={mockSetTerms} areTermsFiltered={false} />);
+
+  const searchInput = screen.getByPlaceholderText("Search term here...");
+  const searchForm = screen.getByRole("form");
+  const value = "Actuary";
+
+  act(() => {
+    userEvent.type(searchInput, value);
+    fireEvent.submit(searchForm);
+  });
+
+  expect(mockSetTerms).toHaveBeenCalledTimes(1);
+  expect(
+    await screen.findByText(`Results for: "${value}"`)
+  ).toBeInTheDocument();
+});
+
+test("form submission displays all terms and an error message when there's no matching result", async () => {
+  const mockSetTerms = jest.fn();
+
+  render(<Search setTerms={mockSetTerms} areTermsFiltered={false} />);
+
+  const searchInput = screen.getByPlaceholderText("Search term here...");
+  const searchForm = screen.getByRole("form");
+  const value = "%XzksB23dk!";
+
+  act(() => {
+    userEvent.type(searchInput, value);
+    fireEvent.submit(searchForm);
+  });
+
+  expect(mockSetTerms).toHaveBeenCalledTimes(0);
+  expect(
+    await screen.findByText(`We couldn't find any item for: "${value}"`)
+  ).toBeInTheDocument();
+});

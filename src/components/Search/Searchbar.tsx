@@ -28,7 +28,7 @@ export default function Searchbar({
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} aria-label="form">
         <input
           className="p-input search-input"
           placeholder="Search term here..."
