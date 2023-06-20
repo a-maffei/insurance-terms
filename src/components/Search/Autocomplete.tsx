@@ -17,7 +17,12 @@ export default function Autocomplete({
   setTerms,
   setQuery,
 }: AutoTypes) {
-  useAutocomplete(query, setAutocomplete);
+  const { handleAutocomplete } = useAutocomplete(
+    query,
+    setQuery,
+    setAutocomplete,
+    setTerms
+  );
 
   /* After defining the logic for the autocomplete, imported from the custom hook, we take care of the UI logic to hide the autocomplete container if the user clicks outside of it */
 
@@ -45,14 +50,8 @@ export default function Autocomplete({
       <ul className="autocomplete-cont" ref={autoCompleteRef}>
         {autocomplete.length > 0 &&
           autocomplete.slice(0, 2).map((term) => (
-            <li key={term.id}>
-              <button
-                onClick={() => {
-                  setQuery("");
-                  setAutocomplete([]);
-                  setTerms([term]);
-                }}
-              >
+            <li key={term.id} data-testid="autocomplete-option">
+              <button onClick={() => handleAutocomplete(term)}>
                 {term.name}
               </button>
             </li>

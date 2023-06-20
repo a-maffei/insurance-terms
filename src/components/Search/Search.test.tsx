@@ -22,6 +22,7 @@ test("updates terms and displays a message when there are matching results", asy
   });
 
   expect(mockSetTerms).toHaveBeenCalledTimes(1);
+  expect(screen.queryByTestId("autocomplete-option")).toBeNull();
   expect(
     await screen.findByText(`Results for: "${value}"`)
   ).toBeInTheDocument();
@@ -42,6 +43,7 @@ test("displays all terms and an error message when there's no matching result", 
   });
 
   expect(mockSetTerms).toHaveBeenCalledTimes(0);
+  expect(screen.queryByTestId("autocomplete-option")).toBeNull();
   expect(
     await screen.findByText(`We couldn't find any item for: "${value}"`)
   ).toBeInTheDocument();
@@ -59,6 +61,7 @@ test("displays all terms and an error message when user submits without typing f
   });
 
   expect(mockSetTerms).toHaveBeenCalledTimes(0);
+  expect(screen.queryByTestId("autocomplete-option")).toBeNull();
   expect(
     await screen.findByText(
       `Oops! It looks like you forgot to enter a search term.`

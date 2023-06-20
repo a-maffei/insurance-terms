@@ -3,12 +3,20 @@ import { insuranceTerms, TermsType } from "../../data";
 
 export function useAutocomplete(
   query: string,
-  setAutocomplete: React.Dispatch<React.SetStateAction<TermsType[]>>
+  setQuery: React.Dispatch<React.SetStateAction<string>>,
+  setAutocomplete: React.Dispatch<React.SetStateAction<TermsType[]>>,
+  setTerms: React.Dispatch<React.SetStateAction<TermsType[]>>
 ) {
   function fetchMatchingTerms(query: string): TermsType[] {
     return insuranceTerms.filter((term: TermsType) => {
       return term.name.toLowerCase().startsWith(query.toLowerCase());
     });
+  }
+
+  function handleAutocomplete(term: TermsType) {
+    setQuery("");
+    setAutocomplete([]);
+    setTerms([term]);
   }
 
   useEffect(() => {
@@ -22,4 +30,6 @@ export function useAutocomplete(
       return setAutocomplete([]);
     }
   }, [query, setAutocomplete]);
+
+  return { handleAutocomplete };
 }
