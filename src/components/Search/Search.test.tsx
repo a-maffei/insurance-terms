@@ -7,7 +7,7 @@ afterEach(() => {
   jest.clearAllMocks();
 });
 
-test("form submission updates terms and displays message when there are matching results", async () => {
+test("updates terms and displays a message when there are matching results", async () => {
   const mockSetTerms = jest.fn();
 
   render(<Search setTerms={mockSetTerms} areTermsFiltered={false} />);
@@ -27,7 +27,7 @@ test("form submission updates terms and displays message when there are matching
   ).toBeInTheDocument();
 });
 
-test("form submission displays all terms and an error message when there's no matching result", async () => {
+test("displays all terms and an error message when there's no matching result", async () => {
   const mockSetTerms = jest.fn();
 
   render(<Search setTerms={mockSetTerms} areTermsFiltered={false} />);
@@ -47,7 +47,7 @@ test("form submission displays all terms and an error message when there's no ma
   ).toBeInTheDocument();
 });
 
-test("form submission displays all terms and an error message when user submits without typing first", async () => {
+test("displays all terms and an error message when user submits without typing first", async () => {
   const mockSetTerms = jest.fn();
 
   render(<Search setTerms={mockSetTerms} areTermsFiltered={false} />);

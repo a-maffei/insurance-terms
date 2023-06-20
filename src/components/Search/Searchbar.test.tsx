@@ -22,13 +22,13 @@ const getProps = (areTermsFiltered: boolean) => ({
   areTermsFiltered,
 });
 
-test("search input element is rendered", () => {
+test("renders search input element", () => {
   render(<Searchbar {...getProps(false)} />);
   const searchInput = screen.getByPlaceholderText("Search term here...");
   expect(searchInput).toBeInTheDocument();
 });
 
-test("the query value is updated whenever the user types", () => {
+test("updates the query value whenever the user types", () => {
   render(<Searchbar {...getProps(false)} />);
   const searchInput = screen.getByPlaceholderText("Search term here...");
   const value = "Insurance term";
@@ -36,14 +36,14 @@ test("the query value is updated whenever the user types", () => {
   expect(mockSetQuery).toHaveBeenCalledTimes(value.length);
 });
 
-test("the reset button is initially disabled", () => {
+test("displays the reset button as initially disabled", () => {
   render(<Searchbar {...getProps(false)} />);
   const resetButton = screen.getByRole("button");
 
   expect(resetButton).toBeDisabled();
 });
 
-test("the reset button is enabled when filtering terms", () => {
+test("enables the reset button when filtering terms", () => {
   render(<Searchbar {...getProps(true)} />);
   const resetButton = screen.getByRole("button");
 
