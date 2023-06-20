@@ -1,7 +1,7 @@
 import { useSearchbar } from "../../utils/hooks/useSearchbar";
 import { TermsType } from "../../data";
 
-type SearchBarTypes = {
+export type SearchBarTypes = {
   query: string;
   areTermsFiltered: boolean;
   setQuery: React.Dispatch<React.SetStateAction<string>>;

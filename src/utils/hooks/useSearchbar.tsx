@@ -17,6 +17,13 @@ export function useSearchbar(
   const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     setAutocomplete([]);
+
+    if (query.length === 0) {
+      return setMessage(
+        `Oops! It looks like you forgot to enter a search term.`
+      );
+    }
+
     const filteredTerms: TermsType[] = insuranceTerms.filter((term) =>
       term.name.toLowerCase().startsWith(query.toLowerCase())
     );

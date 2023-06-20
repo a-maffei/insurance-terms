@@ -46,3 +46,22 @@ test("form submission displays all terms and an error message when there's no ma
     await screen.findByText(`We couldn't find any item for: "${value}"`)
   ).toBeInTheDocument();
 });
+
+test("form submission displays all terms and an error message when user submits without typing first", async () => {
+  const mockSetTerms = jest.fn();
+
+  render(<Search setTerms={mockSetTerms} areTermsFiltered={false} />);
+
+  const searchForm = screen.getByRole("form");
+
+  act(() => {
+    fireEvent.submit(searchForm);
+  });
+
+  expect(mockSetTerms).toHaveBeenCalledTimes(0);
+  expect(
+    await screen.findByText(
+      `Oops! It looks like you forgot to enter a search term.`
+    )
+  ).toBeInTheDocument();
+});
