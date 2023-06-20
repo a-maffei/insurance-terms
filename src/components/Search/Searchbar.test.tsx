@@ -4,18 +4,14 @@ import userEvent from "@testing-library/user-event";
 import Searchbar from "./Searchbar";
 import { TermsType } from "../../data";
 
-let terms: TermsType[] = [];
+afterEach(() => {
+  jest.clearAllMocks();
+});
 
 const mockSetQuery = jest.fn();
 const mockSetMessage = jest.fn();
 const mockSetAutocomplete = jest.fn();
-const mockSetTerms = jest.fn((newTerms) => {
-  terms = newTerms;
-});
-
-afterEach(() => {
-  jest.clearAllMocks();
-});
+const mockSetTerms = jest.fn();
 
 const getProps = (areTermsFiltered: boolean) => ({
   query: "",
@@ -23,7 +19,7 @@ const getProps = (areTermsFiltered: boolean) => ({
   setMessage: mockSetMessage,
   setAutocomplete: mockSetAutocomplete,
   setTerms: mockSetTerms,
-  areTermsFiltered: areTermsFiltered,
+  areTermsFiltered,
 });
 
 test("search input element is rendered", () => {
@@ -32,7 +28,7 @@ test("search input element is rendered", () => {
   expect(searchInput).toBeInTheDocument();
 });
 
-test("setQuery is called with the correct argument when user types", () => {
+test("the query value is updated whenever the user types", () => {
   render(<Searchbar {...getProps(false)} />);
   const searchInput = screen.getByPlaceholderText("Search term here...");
   const value = "Insurance term";
@@ -40,14 +36,14 @@ test("setQuery is called with the correct argument when user types", () => {
   expect(mockSetQuery).toHaveBeenCalledTimes(value.length);
 });
 
-test("Reset button is initially disabled", () => {
+test("the reset button is initially disabled", () => {
   render(<Searchbar {...getProps(false)} />);
   const resetButton = screen.getByRole("button");
 
   expect(resetButton).toBeDisabled();
 });
 
-test("Reset button is enabled when filtering terms", () => {
+test("the reset button is enabled when filtering terms", () => {
   render(<Searchbar {...getProps(true)} />);
   const resetButton = screen.getByRole("button");
 

@@ -7,7 +7,7 @@ afterEach(() => {
   jest.clearAllMocks();
 });
 
-test("form submission displays filtered terms and message when there are matching results", async () => {
+test("form submission updates terms and displays message when there are matching results", async () => {
   const mockSetTerms = jest.fn();
 
   render(<Search setTerms={mockSetTerms} areTermsFiltered={false} />);
