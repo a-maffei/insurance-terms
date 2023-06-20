@@ -3,13 +3,13 @@ import "@testing-library/jest-dom/extend-expect";
 import userEvent from "@testing-library/user-event";
 import Search from "./Search";
 
+const mockSetTerms = jest.fn();
+
 afterEach(() => {
   jest.clearAllMocks();
 });
 
 test("updates terms and displays a message when there are matching results", async () => {
-  const mockSetTerms = jest.fn();
-
   render(<Search setTerms={mockSetTerms} areTermsFiltered={false} />);
 
   const searchInput = screen.getByPlaceholderText("Search term here...");
@@ -29,8 +29,6 @@ test("updates terms and displays a message when there are matching results", asy
 });
 
 test("displays all terms and an error message when there's no matching result", async () => {
-  const mockSetTerms = jest.fn();
-
   render(<Search setTerms={mockSetTerms} areTermsFiltered={false} />);
 
   const searchInput = screen.getByPlaceholderText("Search term here...");
@@ -50,8 +48,6 @@ test("displays all terms and an error message when there's no matching result", 
 });
 
 test("displays all terms and an error message when user submits without typing first", async () => {
-  const mockSetTerms = jest.fn();
-
   render(<Search setTerms={mockSetTerms} areTermsFiltered={false} />);
 
   const searchForm = screen.getByRole("form");
@@ -67,4 +63,17 @@ test("displays all terms and an error message when user submits without typing f
       `Oops! It looks like you forgot to enter a search term.`
     )
   ).toBeInTheDocument();
+});
+
+test("displays autocomplete options when typing", async () => {
+  render(<Search setTerms={mockSetTerms} areTermsFiltered={false} />);
+
+  const searchInput = screen.getByPlaceholderText("Search term here...");
+  const value = "a";
+
+  act(() => {
+    userEvent.type(searchInput, value);
+  });
+
+  expect((await screen.findAllByTestId("autocomplete-option")).length).toBe(2);
 });
