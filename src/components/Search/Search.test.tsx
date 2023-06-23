@@ -1,4 +1,5 @@
-import { render, screen, fireEvent, act } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
+import { act } from "react-dom/test-utils";
 import "@testing-library/jest-dom/extend-expect";
 import userEvent from "@testing-library/user-event";
 import Search from "./Search";
@@ -76,4 +77,29 @@ test("displays autocomplete options when typing", async () => {
   });
 
   expect((await screen.findAllByTestId("autocomplete-option")).length).toBe(2);
+});
+
+test("renders the same 3 suggested terms even if user interacts with the app", async () => {
+  render(<Search setTerms={mockSetTerms} areTermsFiltered={false} />);
+
+  const suggestions = screen.getAllByTestId("suggestion-button");
+  const suggestionTexts = suggestions.map(
+    (suggestion) => suggestion.textContent
+  );
+
+  const searchInput = screen.getByPlaceholderText("Search term here...");
+  const searchForm = screen.getByRole("form");
+  const value = "Actuary";
+
+  act(() => {
+    userEvent.type(searchInput, value);
+    fireEvent.submit(searchForm);
+  });
+
+  const suggestions2 = await screen.findAllByTestId("suggestion-button");
+  const suggestionTexts2 = suggestions2.map(
+    (suggestion) => suggestion.textContent
+  );
+
+  expect(suggestionTexts).toEqual(suggestionTexts2);
 });

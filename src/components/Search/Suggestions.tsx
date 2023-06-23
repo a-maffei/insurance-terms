@@ -25,6 +25,7 @@ function Suggestions({ setAutocomplete, setTerms, setQuery }: SuggestionProps) {
           onClick={() => {
             handleSuggestion(term);
           }}
+          data-testid="suggestion-button"
         >
           {term.name}
         </button>

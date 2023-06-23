@@ -54,3 +54,24 @@ test("displays the correct term when user searches for it", async () => {
   expect(result).toBeInTheDocument();
   expect(resultList.length).toBe(1);
 });
+
+test("renders suggested term once the user clicks on it", async () => {
+  render(<Glossary />);
+
+  const suggestions = screen.getAllByTestId("suggestion-button");
+  const firstSuggestion = suggestions[0];
+  const firstSuggestionText = firstSuggestion.textContent as string;
+
+  act(() => {
+    fireEvent.click(firstSuggestion);
+  });
+
+  const result = await screen.findByRole("heading", {
+    name: firstSuggestionText,
+    level: 4,
+  });
+  const resultList = await screen.findAllByTestId("term-section");
+
+  expect(result).toBeInTheDocument();
+  expect(resultList.length).toBe(1);
+});
