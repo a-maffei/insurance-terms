@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
 import "@testing-library/jest-dom/extend-expect";
 import userEvent from "@testing-library/user-event";
@@ -77,6 +77,28 @@ test("displays autocomplete options when typing", async () => {
   });
 
   expect((await screen.findAllByTestId("autocomplete-option")).length).toBe(2);
+});
+
+test("resets autocomplete when user clicks outside of it", async () => {
+  render(
+    <div>
+      <Search setTerms={mockSetTerms} areTermsFiltered={false} />
+      <button data-testid="outside-element">Click me</button>
+    </div>
+  );
+
+  const outside = screen.getByTestId("outside-element");
+  const searchInput = screen.getByPlaceholderText("Search term here...");
+  const value = "a";
+
+  act(() => {
+    userEvent.type(searchInput, value);
+    fireEvent.click(outside);
+  });
+
+  await waitFor(() => {
+    expect(screen.queryAllByTestId("autocomplete-option")).toHaveLength(0);
+  });
 });
 
 test("renders the same 3 suggested terms even if user interacts with the app", async () => {
