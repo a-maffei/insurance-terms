@@ -24,6 +24,7 @@ const getProps = (areTermsFiltered: boolean) => ({
 test("renders search input element", () => {
   render(<Searchbar {...getProps(false)} />);
   const searchInput = screen.getByPlaceholderText("Search term here...");
+
   expect(searchInput).toBeInTheDocument();
 });
 
@@ -31,7 +32,9 @@ test("updates the query value whenever the user types", () => {
   render(<Searchbar {...getProps(false)} />);
   const searchInput = screen.getByPlaceholderText("Search term here...");
   const value = "Insurance term";
+
   userEvent.type(searchInput, value);
+
   expect(mockSetQuery).toHaveBeenCalledTimes(value.length);
 });
 

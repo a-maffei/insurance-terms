@@ -39,9 +39,10 @@ test("displays the correct term when user searches for it", async () => {
   render(<Glossary />);
   const searchInput = screen.getByPlaceholderText("Search term here...");
   const submissionForm = screen.getByRole("form");
+  const value = "actu";
 
   await act(() => {
-    userEvent.type(searchInput, "actu");
+    userEvent.type(searchInput, value);
     fireEvent.submit(submissionForm);
   });
 
@@ -57,7 +58,6 @@ test("displays the correct term when user searches for it", async () => {
 
 test("renders suggested term once the user clicks on it", async () => {
   render(<Glossary />);
-
   const suggestions = screen.getAllByTestId("suggestion-button");
   const firstSuggestion = suggestions[0];
   const firstSuggestionText = firstSuggestion.textContent as string;

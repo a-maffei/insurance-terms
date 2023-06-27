@@ -12,7 +12,6 @@ afterEach(() => {
 
 test("updates terms and displays a message when there are matching results", async () => {
   render(<Search setTerms={mockSetTerms} areTermsFiltered={false} />);
-
   const searchInput = screen.getByPlaceholderText("Search term here...");
   const searchForm = screen.getByRole("form");
   const value = "Actuary";
@@ -22,16 +21,16 @@ test("updates terms and displays a message when there are matching results", asy
     fireEvent.submit(searchForm);
   });
 
+  const autocomplete = screen.queryByTestId("autocomplete-option");
+  const message = await screen.findByText(`Results for: "${value}"`);
+
   expect(mockSetTerms).toHaveBeenCalledTimes(1);
-  expect(screen.queryByTestId("autocomplete-option")).toBeNull();
-  expect(
-    await screen.findByText(`Results for: "${value}"`)
-  ).toBeInTheDocument();
+  expect(autocomplete).toBeNull();
+  expect(message).toBeInTheDocument();
 });
 
 test("displays all terms and an error message when there's no matching result", async () => {
   render(<Search setTerms={mockSetTerms} areTermsFiltered={false} />);
-
   const searchInput = screen.getByPlaceholderText("Search term here...");
   const searchForm = screen.getByRole("form");
   const value = "%XzksB23dk!";
@@ -41,34 +40,36 @@ test("displays all terms and an error message when there's no matching result", 
     fireEvent.submit(searchForm);
   });
 
+  const autocomplete = screen.queryByTestId("autocomplete-option");
+  const message = await screen.findByText(
+    `We couldn't find any item for: "${value}"`
+  );
+
   expect(mockSetTerms).toHaveBeenCalledTimes(0);
-  expect(screen.queryByTestId("autocomplete-option")).toBeNull();
-  expect(
-    await screen.findByText(`We couldn't find any item for: "${value}"`)
-  ).toBeInTheDocument();
+  expect(autocomplete).toBeNull();
+  expect(message).toBeInTheDocument();
 });
 
 test("displays all terms and an error message when user submits without typing first", async () => {
   render(<Search setTerms={mockSetTerms} areTermsFiltered={false} />);
-
   const searchForm = screen.getByRole("form");
 
   act(() => {
     fireEvent.submit(searchForm);
   });
 
+  const autocomplete = screen.queryByTestId("autocomplete-option");
+  const message = await screen.findByText(
+    `Oops! It looks like you forgot to enter a search term.`
+  );
+
   expect(mockSetTerms).toHaveBeenCalledTimes(0);
-  expect(screen.queryByTestId("autocomplete-option")).toBeNull();
-  expect(
-    await screen.findByText(
-      `Oops! It looks like you forgot to enter a search term.`
-    )
-  ).toBeInTheDocument();
+  expect(autocomplete).toBeNull();
+  expect(message).toBeInTheDocument();
 });
 
 test("displays autocomplete options when typing", async () => {
   render(<Search setTerms={mockSetTerms} areTermsFiltered={false} />);
-
   const searchInput = screen.getByPlaceholderText("Search term here...");
   const value = "a";
 
@@ -76,7 +77,9 @@ test("displays autocomplete options when typing", async () => {
     userEvent.type(searchInput, value);
   });
 
-  expect((await screen.findAllByTestId("autocomplete-option")).length).toBe(2);
+  const autocomplete = await screen.findAllByTestId("autocomplete-option");
+
+  expect(autocomplete.length).toBe(2);
 });
 
 test("resets autocomplete when user clicks outside of it", async () => {
@@ -86,7 +89,6 @@ test("resets autocomplete when user clicks outside of it", async () => {
       <button data-testid="outside-element">Click me</button>
     </div>
   );
-
   const outside = screen.getByTestId("outside-element");
   const searchInput = screen.getByPlaceholderText("Search term here...");
   const value = "a";
@@ -103,12 +105,10 @@ test("resets autocomplete when user clicks outside of it", async () => {
 
 test("renders the same 3 suggested terms even if user interacts with the app", async () => {
   render(<Search setTerms={mockSetTerms} areTermsFiltered={false} />);
-
   const suggestions = screen.getAllByTestId("suggestion-button");
   const suggestionTexts = suggestions.map(
     (suggestion) => suggestion.textContent
   );
-
   const searchInput = screen.getByPlaceholderText("Search term here...");
   const searchForm = screen.getByRole("form");
   const value = "Actuary";
@@ -118,10 +118,12 @@ test("renders the same 3 suggested terms even if user interacts with the app", a
     fireEvent.submit(searchForm);
   });
 
-  const suggestions2 = await screen.findAllByTestId("suggestion-button");
-  const suggestionTexts2 = suggestions2.map(
+  const suggestionsAfterAction = await screen.findAllByTestId(
+    "suggestion-button"
+  );
+  const suggestionsAfterActionTexts = suggestionsAfterAction.map(
     (suggestion) => suggestion.textContent
   );
 
-  expect(suggestionTexts).toEqual(suggestionTexts2);
+  expect(suggestionTexts).toStrictEqual(suggestionsAfterActionTexts);
 });
