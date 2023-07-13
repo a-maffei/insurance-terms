@@ -3,6 +3,17 @@
 
 /* In V2 of this project, it would make sense to split the styling into different component-making it more organized, readable, and manageable */
 
+:is(a, button, input, textarea, summary) {
+  --outline-size: max(2px, 0.08em);
+  --outline-style: solid;
+  --outline-color: #6160a2;
+}
+
+:is(a, button, input, textarea, summary):focus-visible {
+  outline: var(--outline-size) var(--outline-style) var(--outline-color);
+  outline-offset: var(--outline-offset, var(--outline-size));
+}
+
 /* Navbar */
 
 .navbar {
@@ -318,7 +329,6 @@ form {
   }
 }
 
-
 /* Buttons */
 
 .bttn-cont {
@@ -354,6 +364,11 @@ form {
   width: 100%;
   color: $ds-primary-25;
   cursor: pointer;
+}
+
+.letter-bttn > button:focus-visible {
+  outline: max(2px, 0.08em) solid #6160a2;
+  outline-offset: max(2px, 0.08em);
 }
 
 .disabled-bttn,
