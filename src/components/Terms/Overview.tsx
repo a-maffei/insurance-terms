@@ -32,5 +32,5 @@ export default function Overview({
     }
   );
 
-  return <div className="overview-cont">{termsOverview}</div>;
+  return <section className="overview-cont">{termsOverview}</section>;
 }

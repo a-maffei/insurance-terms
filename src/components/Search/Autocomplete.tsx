@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import { TermsType } from "../../data";
 import { useAutocomplete } from "../../utils/hooks/useAutocomplete";
 
-type AutoTypes = {
+type AutoProps = {
   query: string;
   autocomplete: TermsType[];
   setAutocomplete: React.Dispatch<React.SetStateAction<TermsType[]>>;
@@ -16,7 +16,7 @@ export default function Autocomplete({
   query,
   setTerms,
   setQuery,
-}: AutoTypes) {
+}: AutoProps) {
   const { handleAutocomplete } = useAutocomplete(
     query,
     setQuery,

@@ -1,7 +1,7 @@
 import { useSearchbar } from "../../utils/hooks/useSearchbar";
 import { TermsType } from "../../data";
 
-export type SearchBarTypes = {
+export type SearchBarProps = {
   query: string;
   areTermsFiltered: boolean;
   setQuery: React.Dispatch<React.SetStateAction<string>>;
@@ -17,7 +17,7 @@ export default function Searchbar({
   setAutocomplete,
   setTerms,
   areTermsFiltered,
-}: SearchBarTypes) {
+}: SearchBarProps) {
   const { handleSubmit, handleClearInput, handleTextInput } = useSearchbar(
     query,
     setQuery,

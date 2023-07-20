@@ -6,7 +6,7 @@ type BreakdownProps = {
 
 export default function Breakdown({ termsByLetter }: BreakdownProps) {
   return (
-    <div>
+    <>
       {termsByLetter.map(({ id, name, description }: TermsType) => {
         return (
           <article
@@ -19,6 +19,6 @@ export default function Breakdown({ termsByLetter }: BreakdownProps) {
           </article>
         );
       })}
-    </div>
+    </>
   );
 }

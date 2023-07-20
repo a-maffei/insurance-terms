@@ -8,8 +8,8 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="navbar">
-      <div className="navbar-cont">
+    <header className="navbar">
+      <nav className="navbar-cont">
         <a
           className="logo-cont"
           href="https://feather-insurance.com/"
@@ -27,7 +27,7 @@ export default function Navbar() {
           ></img>
         </a>
         <button onClick={handleCVButtonClick}>Alessandra's CV</button>
-      </div>
-    </nav>
+      </nav>
+    </header>
   );
 }

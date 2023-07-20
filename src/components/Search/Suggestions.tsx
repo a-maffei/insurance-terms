@@ -16,7 +16,7 @@ function Suggestions({ setAutocomplete, setTerms, setQuery }: SuggestionProps) {
   );
 
   return (
-    <div className="suggestion-cont p-p--small">
+    <article className="suggestion-cont p-p--small">
       Tip:
       {randomizedTerms.map((term) => (
         <button
@@ -30,7 +30,7 @@ function Suggestions({ setAutocomplete, setTerms, setQuery }: SuggestionProps) {
           {term.name}
         </button>
       ))}
-    </div>
+    </article>
   );
 }
 

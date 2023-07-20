@@ -13,17 +13,14 @@ export default function Glossary() {
 
   /* We create an array of refs, which we'll use to allow scrolling down to a certain letter when clicking on the respective button */
 
-  console.log(termsByLetter);
   const refsByLetter = alphabet.map(() => createRef<HTMLDivElement>());
 
   return (
-    <div className="glossary-cont bg-primary-50">
-      <header>
-        <HeaderGlossary>
-          <Search areTermsFiltered={areTermsFiltered} setTerms={setTerms} />
-        </HeaderGlossary>
-      </header>
-      <main>
+    <main className="glossary-cont bg-primary-50">
+      <HeaderGlossary>
+        <Search areTermsFiltered={areTermsFiltered} setTerms={setTerms} />
+      </HeaderGlossary>
+      <section className="glossary-section">
         <Alphabet refsByLetter={refsByLetter} />
         <Overview
           termsByLetter={termsByLetter}
@@ -31,7 +28,7 @@ export default function Glossary() {
         />{" "}
         <BackButton areTermsFiltered={areTermsFiltered} />
         <CTA />
-      </main>
-    </div>
+      </section>
+    </main>
   );
 }

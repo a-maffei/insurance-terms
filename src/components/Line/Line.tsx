@@ -10,7 +10,7 @@ export default function Line() {
       currentWidth += 5;
       setWidth(currentWidth);
 
-      if (currentWidth < 100) {
+      if (currentWidth <= 100) {
         animationFrame = requestAnimationFrame(increaseLineWidth);
       }
     }
