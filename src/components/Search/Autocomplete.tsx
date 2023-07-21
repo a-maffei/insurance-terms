@@ -51,7 +51,10 @@ export default function Autocomplete({
         {autocomplete.length > 0 &&
           autocomplete.slice(0, 2).map((term) => (
             <li key={term.id} data-testid="autocomplete-option">
-              <button onClick={() => handleAutocomplete(term)}>
+              <button
+                aria-label={`Autocomplete option: ${term.name}`}
+                onClick={() => handleAutocomplete(term)}
+              >
                 {term.name}
               </button>
             </li>

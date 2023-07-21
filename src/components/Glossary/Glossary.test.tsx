@@ -1,4 +1,4 @@
-import { screen, render, fireEvent, waitFor } from "@testing-library/react";
+import { screen, render, fireEvent } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
 import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom/extend-expect";
@@ -13,16 +13,15 @@ test("shows corresponding term and resets search input when user clicks on autoc
   const searchInput = screen.getByPlaceholderText("Search term here...");
   const value = "a";
 
-  await act(() => {
+  act(() => {
     userEvent.type(searchInput, value);
-
-    waitFor(() => {
-      const autocompleteButton = screen.getByRole("button", {
-        name: "Actuary",
-      });
-      fireEvent.click(autocompleteButton);
-    });
   });
+
+  const autocompleteButton = await screen.findByRole("button", {
+    name: `Autocomplete option: Actuary`,
+  });
+
+  fireEvent.click(autocompleteButton);
 
   const newSearchInput = screen.getByPlaceholderText(
     "Search term here..."
@@ -41,7 +40,7 @@ test("displays the correct term when user searches for it", async () => {
   const submissionForm = screen.getByRole("form");
   const value = "actu";
 
-  await act(() => {
+  act(() => {
     userEvent.type(searchInput, value);
     fireEvent.submit(submissionForm);
   });
